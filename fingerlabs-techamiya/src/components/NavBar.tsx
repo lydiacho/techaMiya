@@ -40,7 +40,6 @@ const St = {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 2rem 0rem;
     font-size: 1.6rem;
     font-weight: 600;
     cursor: pointer;
@@ -52,6 +51,7 @@ const St = {
   Line: styled.div`
     width: 100%;
     height: 0.1rem;
+    margin: 2rem 0rem;
     background-color: ${({ theme }) => theme.colors.purple1};
   `,
 };
