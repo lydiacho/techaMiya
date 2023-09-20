@@ -1,15 +1,27 @@
 import { styled } from "styled-components";
 import TRAITS from "../data/traits";
+import { useState } from "react";
 
 const NavBar = () => {
   const FILTER = Object.keys(TRAITS);
+  const [filterOpen, setFilterOpen] = useState<boolean[]>(
+    Array.from({ length: 13 }, () => false)
+  );
+
   return (
     <St.Wrapper>
       {FILTER.map((el, idx) => (
         <div key={idx}>
-          <St.FilterItem>
+          <St.FilterItem
+            onClick={() => {
+              // 배열의 특정 요소 update
+              const temp = [...filterOpen];
+              temp[idx] = !temp[idx];
+              setFilterOpen(temp);
+            }}
+          >
             {el}
-            <img src="src/assets/arrow.svg" />
+            <i>{filterOpen[idx] ? "▼" : "▲"}</i>
           </St.FilterItem>
           <St.Line />
         </div>
@@ -31,10 +43,10 @@ const St = {
     padding: 2rem 0rem;
     font-size: 1.6rem;
     font-weight: 600;
+    cursor: pointer;
 
-    & > img {
-      width: 1.5rem;
-      height: 1.5rem;
+    & > i {
+      font-size: 1.6rem;
     }
   `,
   Line: styled.div`
