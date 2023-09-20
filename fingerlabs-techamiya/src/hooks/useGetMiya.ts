@@ -12,7 +12,7 @@ const useGetMiya = () => {
   );
 
   useEffect(() => {
-    if (data.length < 1000) {
+    if (data.length < 9) {
       miya
         .tokenURI(data.length)
         .then(fetch)

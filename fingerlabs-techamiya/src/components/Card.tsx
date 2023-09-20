@@ -1,9 +1,9 @@
 import { styled } from "styled-components";
 
-const Card = ({ name }: { name: string }) => {
+const Card = ({ name, image }: { name: string; image: string }) => {
   return (
     <St.Wrapper>
-      <St.Image />
+      <St.Image src={image} alt="NFT이미지" />
       <St.Name>{name}</St.Name>
     </St.Wrapper>
   );

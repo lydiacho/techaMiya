@@ -8,7 +8,7 @@ const CardGallery = () => {
   return (
     <St.Wrapper>
       {DATA.map((el, idx) => (
-        <Card name={el.name} key={idx} />
+        <Card key={idx} name={el.name} image={el.image} />
       ))}
     </St.Wrapper>
   );
