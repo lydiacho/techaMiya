@@ -3,7 +3,7 @@ import { ethers } from "ethers";
 import { provider, techaMiyaABI, techaMiyaContractAddress } from "../lib/api";
 import { MetaDataType } from "../types/NftType";
 
-const useGetMiya = (start: number) => {
+const useGetMiya = (inView: boolean) => {
   const [data, setData] = useState<MetaDataType[]>([]);
   const miya = new ethers.Contract(
     techaMiyaContractAddress,
@@ -11,20 +11,24 @@ const useGetMiya = (start: number) => {
     provider
   );
 
+  const [idx, setIdx] = useState(0);
+
   useEffect(() => {
-    // 무한스크롤을 위해 start 추가
-    if (data.length < 9) {
-      miya
-        .tokenURI(data.length + start)
-        .then(fetch)
-        .then((res) => res.json())
-        .then((json) => JSON.stringify(json, null, 2))
-        .then((json) => JSON.parse(json))
-        .then((res) => {
-          setData((prev) => [...prev, res]);
-        });
+    if (inView) {
+      for (let i = 0; i < 9; i++) {
+        miya
+          .tokenURI(idx + i)
+          .then(fetch)
+          .then((res) => res.json())
+          .then((json) => JSON.stringify(json, null, 2))
+          .then((json) => JSON.parse(json))
+          .then((res) => {
+            setData((prev) => [...prev, res]);
+          });
+      }
+      setIdx((prev) => prev + 9);
     }
-  }, [data]);
+  }, [inView]);
 
   return data;
 };
