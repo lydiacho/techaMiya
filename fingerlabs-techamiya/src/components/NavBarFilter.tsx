@@ -53,7 +53,7 @@ const St = {
     border: 0.1rem solid ${({ theme }) => theme.colors.purple1};
     border-radius: 0.3rem;
     background-color: ${({ $isItemChecked, theme }) =>
-      $isItemChecked ? theme.colors.purple1 : theme.colors.bg};
+      $isItemChecked ? theme.colors.pink : theme.colors.bg};
 
     font-size: 1.3rem;
     color: ${({ $isItemChecked, theme }) =>
