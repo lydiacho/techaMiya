@@ -1,22 +1,14 @@
 import { styled } from "styled-components";
 import Card from "./Card";
+import useGetMiya from "../hooks/useGetMiya";
 
 const CardGallery = () => {
-  const DATA = [
-    "MIYA #0001",
-    "MIYA #0002",
-    "MIYA #0003",
-    "MIYA #0004",
-    "MIYA #0005",
-    "MIYA #0006",
-    "MIYA #0007",
-    "MIYA #0008",
-    "MIYA #0009",
-  ];
+  const DATA = useGetMiya();
+
   return (
     <St.Wrapper>
       {DATA.map((el, idx) => (
-        <Card name={el} key={idx} />
+        <Card name={el.name} key={idx} />
       ))}
     </St.Wrapper>
   );
