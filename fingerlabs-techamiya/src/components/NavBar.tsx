@@ -22,7 +22,7 @@ const NavBar = () => {
             }}
           >
             {el}
-            <i>{filterOpen[idx] ? "▼" : "▲"}</i>
+            <i>{filterOpen[idx] ? "▲" : "▼"}</i>
           </St.FilterItem>
           {filterOpen[idx] && <NavBarFilter filterIdx={idx} />}
           <St.Line />
