@@ -1,15 +1,19 @@
 import { styled } from "styled-components";
 import Card from "./Card";
 import useGetMiya from "../hooks/useGetMiya";
+import { useInView } from "react-intersection-observer";
 
 const CardGallery = () => {
-  const DATA = useGetMiya();
+  const DATA = useGetMiya(0);
+
+  const [ref, inView] = useInView();
 
   return (
     <St.Wrapper>
       {DATA.map((el, idx) => (
         <Card key={idx} name={el.name} image={el.image} />
       ))}
+      <div ref={ref}>BOTTOM</div>
     </St.Wrapper>
   );
 };
