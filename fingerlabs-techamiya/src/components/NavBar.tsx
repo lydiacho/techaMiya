@@ -6,10 +6,13 @@ const NavBar = () => {
   return (
     <St.Wrapper>
       {FILTER.map((el, idx) => (
-        <St.FilterItem key={idx}>
-          <p>{el}</p>
+        <div key={idx}>
+          <St.FilterItem>
+            {el}
+            <img src="src/assets/arrow.svg" />
+          </St.FilterItem>
           <St.Line />
-        </St.FilterItem>
+        </div>
       ))}
     </St.Wrapper>
   );
@@ -22,10 +25,16 @@ const St = {
     width: 26.4rem;
   `,
   FilterItem: styled.li`
-    & > p {
-      padding: 2rem 0rem;
-      font-size: 1.6rem;
-      font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 0rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+
+    & > img {
+      width: 1.5rem;
+      height: 1.5rem;
     }
   `,
   Line: styled.div`
