@@ -1,6 +1,7 @@
 import { styled } from "styled-components";
 import TRAITS from "../data/traits";
 import { useState } from "react";
+import NavBarFilter from "./NavBarFilter";
 
 const NavBar = () => {
   const FILTER = Object.keys(TRAITS);
@@ -23,6 +24,7 @@ const NavBar = () => {
             {el}
             <i>{filterOpen[idx] ? "▼" : "▲"}</i>
           </St.FilterItem>
+          {filterOpen[idx] && <NavBarFilter filterIdx={idx} />}
           <St.Line />
         </div>
       ))}
