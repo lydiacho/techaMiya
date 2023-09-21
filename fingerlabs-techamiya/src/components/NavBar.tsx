@@ -29,13 +29,12 @@ const NavBar = ({ checkedList, setCheckedList }: NavBarProps) => {
             {el}
             <i>{filterOpen[idx] ? "▲" : "▼"}</i>
           </St.FilterItem>
-          {filterOpen[idx] && (
-            <NavBarFilter
-              filterIdx={idx}
-              checkedList={checkedList}
-              setCheckedList={setCheckedList}
-            />
-          )}
+          <NavBarFilter
+            filterOpen={filterOpen[idx]}
+            filterIdx={idx}
+            checkedList={checkedList}
+            setCheckedList={setCheckedList}
+          />
           <St.Line />
         </div>
       ))}

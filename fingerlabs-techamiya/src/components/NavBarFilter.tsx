@@ -3,12 +3,14 @@ import { styled } from "styled-components";
 import TRAITS from "../data/traits";
 
 interface NavBarFilterProps {
+  filterOpen: boolean;
   filterIdx: number;
   checkedList: string[][];
   setCheckedList: React.Dispatch<React.SetStateAction<string[][]>>;
 }
 
 const NavBarFilter = ({
+  filterOpen,
   filterIdx,
   checkedList,
   setCheckedList,
@@ -20,7 +22,7 @@ const NavBarFilter = ({
   );
 
   return (
-    <St.Wrapper>
+    <St.Wrapper $filterOpen={filterOpen}>
       {FILTER[filterIdx].map((el, idx) => (
         <St.TraitItem key={idx}>
           <St.CheckBox
@@ -49,8 +51,8 @@ const NavBarFilter = ({
 export default NavBarFilter;
 
 const St = {
-  Wrapper: styled.ul`
-    display: flex;
+  Wrapper: styled.ul<{ $filterOpen: boolean }>`
+    display: ${({ $filterOpen }) => ($filterOpen ? "flex" : "none")};
     flex-direction: column;
     gap: 1.5rem;
 
