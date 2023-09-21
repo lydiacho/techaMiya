@@ -13,7 +13,6 @@ const CardGallery = ({ checkedList }: { checkedList: string[][] }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
     if (e.target.value.length > 3) {
-      alert("토큰번호는 0~999까지 검색 가능합니다");
       setSearch(e.target.value.slice(0, 3));
     }
   };
