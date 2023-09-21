@@ -10,7 +10,9 @@ const CardGallery = ({ checkedList }: { checkedList: string[][] }) => {
   return (
     <St.Wrapper>
       <St.TopBar>
-        <St.ItemCount>1000 Items</St.ItemCount>
+        <St.ItemCount>
+          <span>{DATA.length}</span> Items
+        </St.ItemCount>
         <St.Search placeholder="Number" />
       </St.TopBar>
       <St.Container>
@@ -65,7 +67,14 @@ const St = {
     width: 100%;
   `,
   ItemCount: styled.p`
-    font-size: 1.6rem;
+    font-size: 2rem;
+    font-weight: 700;
+    color: ${({ theme }) => theme.colors.purple1};
+
+    & > span {
+      font-size: 2rem;
+      color: white;
+    }
   `,
   Search: styled.input`
     padding: 1.7rem;
