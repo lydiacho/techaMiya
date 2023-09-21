@@ -37,5 +37,6 @@ const St = {
     gap: 3rem;
 
     width: 93rem;
+    height: fit-content;
   `,
 };
