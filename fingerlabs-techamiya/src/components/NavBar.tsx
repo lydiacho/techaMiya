@@ -35,7 +35,10 @@ const NavBar = ({ checkedList, setCheckedList }: NavBarProps) => {
             }}
           >
             {el}
-            <i>{filterOpen[idx] ? "▲" : "▼"}</i>
+            <St.ArrowIcon
+              src="src/assets/arrow.svg"
+              $filterOpen={filterOpen[idx]}
+            />
           </St.FilterItem>
           <NavBarFilter
             filterOpen={filterOpen[idx]}
@@ -92,5 +95,9 @@ const St = {
     height: 0.05rem;
     margin: 2rem 0rem;
     background-color: ${({ theme }) => theme.colors.purple1};
+  `,
+  ArrowIcon: styled.img<{ $filterOpen: boolean }>`
+    width: 2rem;
+    ${({ $filterOpen }) => $filterOpen && "transform: scaleY(-1);"}
   `,
 };
