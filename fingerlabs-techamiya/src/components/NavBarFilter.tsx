@@ -30,6 +30,7 @@ const NavBarFilter = ({
         newCheckedList[filterIdx].indexOf(el),
         1
       );
+      setCheckedList(newCheckedList);
       return;
     }
     // 체크 추가

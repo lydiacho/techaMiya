@@ -7,5 +7,5 @@ export interface MetaDataType {
   name: string;
   image: string;
   description?: string;
-  attributes?: Attribute[];
+  attributes: Attribute[];
 }

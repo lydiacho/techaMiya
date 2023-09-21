@@ -12,7 +12,7 @@ const Gallery = () => {
       <St.Header>TECHA MIYA</St.Header>
       <St.Container>
         <NavBar checkedList={checkedList} setCheckedList={setCheckedList} />
-        <CardGallery />
+        <CardGallery checkedList={checkedList} />
       </St.Container>
     </St.Wrapper>
   );
