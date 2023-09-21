@@ -87,7 +87,7 @@ const St = {
     background-color: ${({ $isItemChecked, theme }) =>
       $isItemChecked ? theme.colors.pink : theme.colors.bg};
 
-    font-size: 1.3rem;
+    font-size: 2rem;
     color: ${({ $isItemChecked, theme }) =>
       $isItemChecked ? "white" : theme.colors.bg};
     cursor: pointer;
