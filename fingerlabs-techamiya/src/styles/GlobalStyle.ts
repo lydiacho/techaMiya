@@ -89,6 +89,15 @@ export const reset = css`
     border: 0;
     font-size: 62.5%;
     vertical-align: baseline;
+
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 2px;
+      fill: white;
+      background-color: ${({ theme }) => theme.colors.purple1};
+    }
   }
 
   /* HTML5 display-role reset for older browsers */

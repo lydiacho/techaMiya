@@ -25,7 +25,7 @@ const St = {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100vw;
+    width: 100%;
     padding-bottom: 9rem;
 
     background-color: ${({ theme }) => theme.colors.bg};
