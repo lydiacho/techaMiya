@@ -48,6 +48,7 @@ const St = {
 
     & > i {
       font-size: 1.6rem;
+      font-style: normal;
     }
   `,
   Line: styled.div`
