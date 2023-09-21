@@ -12,6 +12,9 @@ const CardGallery = ({ checkedList }: { checkedList: string[][] }) => {
 
   const [search, setSearch] = useState("");
 
+  // 무한스크롤
+  const [page, setPage] = useState(1);
+
   // 데이터 띄우기
   useEffect(() => {
     DATA && setData(DATA);
@@ -42,6 +45,12 @@ const CardGallery = ({ checkedList }: { checkedList: string[][] }) => {
     }
   };
 
+  useEffect(() => {
+    if (inView) {
+      setPage((prev) => prev + 1);
+    }
+  }, [inView]);
+
   return (
     <St.Wrapper>
       <St.TopBar>
@@ -56,9 +65,12 @@ const CardGallery = ({ checkedList }: { checkedList: string[][] }) => {
         />
       </St.TopBar>
       <St.Container>
-        {data.map((el, idx) => (
-          <Card key={idx} name={el.name} image={el.image} />
-        ))}
+        {data
+          // 9개씩 쪼개서 렌더링
+          .filter((_, idx) => idx < 9 * page)
+          .map((el, idx) => (
+            <Card key={idx} name={el.name} image={el.image} />
+          ))}
         <div ref={ref} />
       </St.Container>
     </St.Wrapper>
