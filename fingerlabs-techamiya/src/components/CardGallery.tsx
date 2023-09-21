@@ -2,10 +2,21 @@ import { styled } from "styled-components";
 import Card from "./Card";
 import useGetMiya from "../hooks/useGetMiya";
 import { useInView } from "react-intersection-observer";
+import { useState } from "react";
 
 const CardGallery = ({ checkedList }: { checkedList: string[][] }) => {
   const [ref, inView] = useInView();
   const DATA = useGetMiya(inView);
+
+  const [search, setSearch] = useState("");
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+    if (e.target.value.length > 3) {
+      alert("토큰번호는 0~999까지 검색 가능합니다");
+      setSearch(e.target.value.slice(0, 3));
+    }
+  };
 
   return (
     <St.Wrapper>
@@ -13,7 +24,13 @@ const CardGallery = ({ checkedList }: { checkedList: string[][] }) => {
         <St.ItemCount>
           <span>{DATA.length}</span> Items
         </St.ItemCount>
-        <St.Search placeholder="Number" />
+        <St.Search
+          placeholder="Number"
+          type="number"
+          maxLength={4}
+          onChange={handleChange}
+          value={search}
+        />
       </St.TopBar>
       <St.Container>
         {checkedList &&
@@ -89,6 +106,12 @@ const St = {
 
     &::placeholder {
       color: ${({ theme }) => theme.colors.purple1};
+    }
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
     }
   `,
 };
