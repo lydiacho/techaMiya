@@ -24,6 +24,7 @@ const St = {
     padding-bottom: 9rem;
 
     background-color: ${({ theme }) => theme.colors.bg};
+    color: white;
   `,
   Header: styled.h1`
     margin: 9rem 0rem;
