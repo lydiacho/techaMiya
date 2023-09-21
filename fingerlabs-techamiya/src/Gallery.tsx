@@ -41,7 +41,5 @@ const St = {
   Container: styled.div`
     display: flex;
     gap: 4.8rem;
-
-    max-width: 122rem;
   `,
 };

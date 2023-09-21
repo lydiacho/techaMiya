@@ -35,5 +35,7 @@ const St = {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 3rem;
+
+    width: 93rem;
   `,
 };
