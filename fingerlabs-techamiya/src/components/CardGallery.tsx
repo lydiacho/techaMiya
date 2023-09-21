@@ -8,7 +8,7 @@ import { MetaDataType } from "../types/NftType";
 const CardGallery = ({ checkedList }: { checkedList: string[][] }) => {
   const [ref, inView] = useInView();
   const DATA = useGetMiya();
-  const [data, setData] = useState<MetaDataType[]>(DATA);
+  const [data, setData] = useState<MetaDataType[]>([]);
 
   const [search, setSearch] = useState("");
 
@@ -56,10 +56,9 @@ const CardGallery = ({ checkedList }: { checkedList: string[][] }) => {
         />
       </St.TopBar>
       <St.Container>
-        {checkedList &&
-          data.map((el, idx) => (
-            <Card key={idx} name={el.name} image={el.image} />
-          ))}
+        {data.map((el, idx) => (
+          <Card key={idx} name={el.name} image={el.image} />
+        ))}
         <div ref={ref} />
       </St.Container>
     </St.Wrapper>
