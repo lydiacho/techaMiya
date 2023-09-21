@@ -6,21 +6,22 @@ import { useEffect, useRef, useState } from "react";
 import { MetaDataType } from "../types/NftType";
 
 const CardGallery = ({ checkedList }: { checkedList: string[][] }) => {
+  const DATA = useGetMiya(); // 1000개의 미야 데이터
+  const [data, setData] = useState<MetaDataType[]>([]); // 화면에 렌더링할 미야 데이터
+  const containerRef = useRef<HTMLElement | null>(null); // DOM을 지정하여 애니메이션을 적용하기 위한 useRef
+
+  const [search, setSearch] = useState(""); // 검색창 입력시 자동검색을 위한 search state
+
+  // for 무한 스크롤
   const [ref, inView] = useInView();
-  const DATA = useGetMiya();
-  const [data, setData] = useState<MetaDataType[]>([]);
-  const containerRef = useRef<HTMLElement | null>(null);
+  const [page, setPage] = useState(1); // 9개씩 묶었을 때 몇번째 묶음인지를 의미하는 page state
 
-  const [search, setSearch] = useState("");
-
-  // 무한스크롤
-  const [page, setPage] = useState(1);
-
-  // 데이터 띄우기
+  // data에 1000개의 미야 데이터 저장
   useEffect(() => {
     DATA && setData(DATA);
   }, [DATA]);
 
+  // search(검색), checkedList(선택한 필터)에 대해 모두 만족하는 미야들로 data update (update 시마다 fadein 효과 )
   useEffect(() => {
     setData(
       //검색창 %search% 검색 (아무것도 입력안하면 전체)
@@ -38,6 +39,7 @@ const CardGallery = ({ checkedList }: { checkedList: string[][] }) => {
         })
     );
 
+    // 갤러리 렌더링 시 fade in 애니메이션
     if (containerRef.current) {
       containerRef.current.classList.add("animation");
       setTimeout(() => {
@@ -47,7 +49,8 @@ const CardGallery = ({ checkedList }: { checkedList: string[][] }) => {
     }
   }, [search, checkedList]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  // 글자수 3자리까지 제한
+  const handleTextLength = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
     if (e.target.value.length > 3) {
       setSearch(e.target.value.slice(0, 3));
@@ -70,7 +73,7 @@ const CardGallery = ({ checkedList }: { checkedList: string[][] }) => {
           <St.Search
             placeholder="Number"
             type="number"
-            onChange={handleChange}
+            onChange={handleTextLength}
             value={search}
           />
           <img src="src/assets/search.svg" />
@@ -78,8 +81,7 @@ const CardGallery = ({ checkedList }: { checkedList: string[][] }) => {
       </St.TopBar>
       <St.Container ref={containerRef}>
         {data
-          // 9개씩 쪼개서 렌더링
-          .filter((_, idx) => idx < 9 * page)
+          .filter((_, idx) => idx < 9 * page) // 9개씩 쪼개서 렌더링
           .map((el, idx) => (
             <Card key={idx} name={el.name} image={el.image} />
           ))}
