@@ -66,12 +66,15 @@ const CardGallery = ({ checkedList }: { checkedList: string[][] }) => {
         <St.ItemCount>
           <span>{data.length}</span> Items
         </St.ItemCount>
-        <St.Search
-          placeholder="Number"
-          type="number"
-          onChange={handleChange}
-          value={search}
-        />
+        <St.SearchContainer>
+          <St.Search
+            placeholder="Number"
+            type="number"
+            onChange={handleChange}
+            value={search}
+          />
+          <img src="src/assets/search.svg" />
+        </St.SearchContainer>
       </St.TopBar>
       <St.Container ref={containerRef}>
         {data
@@ -138,6 +141,18 @@ const St = {
       color: white;
     }
   `,
+  SearchContainer: styled.div`
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    & > img {
+      position: absolute;
+      right: 0;
+      margin-right: 1rem;
+    }
+  `,
+
   Search: styled.input`
     padding: 1.7rem;
     height: 3rem;

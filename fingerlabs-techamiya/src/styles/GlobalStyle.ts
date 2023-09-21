@@ -152,8 +152,6 @@ export const GlobalStyle = createGlobalStyle`
 
 ${reset}
 
-@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300&display=swap');
-
 #root, body, html {
     margin: 0 auto;
     /* overflow-y: auto; */
