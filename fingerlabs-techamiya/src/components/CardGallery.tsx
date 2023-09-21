@@ -2,13 +2,14 @@ import { styled } from "styled-components";
 import Card from "./Card";
 import useGetMiya from "../hooks/useGetMiya";
 import { useInView } from "react-intersection-observer";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MetaDataType } from "../types/NftType";
 
 const CardGallery = ({ checkedList }: { checkedList: string[][] }) => {
   const [ref, inView] = useInView();
   const DATA = useGetMiya();
   const [data, setData] = useState<MetaDataType[]>([]);
+  const containerRef = useRef<HTMLElement | null>(null);
 
   const [search, setSearch] = useState("");
 
@@ -36,6 +37,14 @@ const CardGallery = ({ checkedList }: { checkedList: string[][] }) => {
           return flag;
         })
     );
+
+    if (containerRef.current) {
+      containerRef.current.classList.add("animation");
+      setTimeout(() => {
+        containerRef.current &&
+          containerRef.current.classList.remove("animation");
+      }, 1500);
+    }
   }, [search, checkedList]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -64,7 +73,7 @@ const CardGallery = ({ checkedList }: { checkedList: string[][] }) => {
           value={search}
         />
       </St.TopBar>
-      <St.Container>
+      <St.Container ref={containerRef}>
         {data
           // 9개씩 쪼개서 렌더링
           .filter((_, idx) => idx < 9 * page)
@@ -94,6 +103,20 @@ const St = {
     & > div {
       position: absolute;
       bottom: 0;
+    }
+
+    &.animation {
+      animation: fadein 2s;
+      -webkit-animation: fadein 2s; /* Safari and Chrome */
+
+      @keyframes fadein {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
     }
   `,
   TopBar: styled.section`
