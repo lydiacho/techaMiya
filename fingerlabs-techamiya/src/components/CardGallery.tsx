@@ -26,7 +26,6 @@ const CardGallery = ({ checkedList }: { checkedList: string[][] }) => {
         <St.Search
           placeholder="Number"
           type="number"
-          maxLength={4}
           onChange={handleChange}
           value={search}
         />
