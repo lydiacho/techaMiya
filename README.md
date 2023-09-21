@@ -39,10 +39,10 @@ App.tsx > Gallery.tsx >
 ---
 [ 구현 보고서 ]  
 - index
-  - [데이터페칭](https://github.com/lydiacho/techaMiya/new/main#데이터-페칭)
-  - [필터링](https://github.com/lydiacho/techaMiya/new/main#필터링)
-  - [무한스크롤](https://github.com/lydiacho/techaMiya/new/main#무한스크롤)
-  - [검색기능](https://github.com/lydiacho/techaMiya/new/main#검색-기능)
+  - [데이터페칭](https://github.com/lydiacho/techaMiya/tree/main#데이터-페칭)
+  - [필터링](https://github.com/lydiacho/techaMiya/tree/main#필터링)
+  - [무한스크롤](https://github.com/lydiacho/techaMiya/tree/main#무한스크롤)
+  - [검색기능](https://github.com/lydiacho/techaMiya/tree/main#검색-기능)
 
 ### 데이터 페칭
 
