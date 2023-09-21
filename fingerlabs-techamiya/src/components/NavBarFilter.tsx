@@ -1,12 +1,10 @@
 import { useState } from "react";
 import { styled } from "styled-components";
+import TRAITS from "../data/traits";
 
 const NavBarFilter = ({ filterIdx }: { filterIdx: number }) => {
-  const FILTER = [
-    ["가", "나", "다"],
-    ["...", ".....", "........"],
-    ["망", "망망", "망망망"],
-  ];
+  // 각 trait을 FILTER[filterIdx]로 접근하기 때문에, key를 제외하고 value들로 이루어진 배열 생성하여 렌더링
+  const FILTER = Object.values(TRAITS);
   const [isChecked, setChecked] = useState<boolean[]>(
     Array.from({ length: FILTER[filterIdx].length }, () => false)
   );
