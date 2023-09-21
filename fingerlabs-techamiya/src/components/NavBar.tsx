@@ -16,6 +16,14 @@ const NavBar = ({ checkedList, setCheckedList }: NavBarProps) => {
 
   return (
     <St.Wrapper>
+      <St.NavTitle>
+        Filter
+        <St.RefreshBtn
+          src="src/assets/refresh.svg"
+          onClick={() => location.reload()}
+        />
+      </St.NavTitle>
+      <St.BoldLine />
       {FILTER.map((el, idx) => (
         <div key={idx}>
           <St.FilterItem
@@ -47,6 +55,24 @@ export default NavBar;
 const St = {
   Wrapper: styled.ul`
     width: 26.4rem;
+  `,
+  NavTitle: styled.div`
+    display: flex;
+    justify-content: space-between;
+
+    font-size: 2rem;
+    font-weight: 700;
+  `,
+  RefreshBtn: styled.img`
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+  `,
+  BoldLine: styled.div`
+    width: 100%;
+    height: 0.1rem;
+    margin: 2rem 0rem;
+    background-color: white;
   `,
   FilterItem: styled.li`
     display: flex;
