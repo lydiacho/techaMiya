@@ -21,6 +21,22 @@ const NavBarFilter = ({
     Array.from({ length: FILTER[filterIdx].length }, () => false)
   );
 
+  const toggleFilter = (el: string) => {
+    // 체크된 속성을 관리하는 checkedList의 해당하는 필터 종류에 체크한 속성 추가
+    const newCheckedList = [...checkedList];
+    if (checkedList[filterIdx].includes(el)) {
+      // 체크 해제
+      newCheckedList[filterIdx].splice(
+        newCheckedList[filterIdx].indexOf(el),
+        1
+      );
+      return;
+    }
+    // 체크 추가
+    newCheckedList[filterIdx].push(el);
+    setCheckedList(newCheckedList);
+  };
+
   return (
     <St.Wrapper $filterOpen={filterOpen}>
       {FILTER[filterIdx].map((el, idx) => (
@@ -32,11 +48,7 @@ const NavBarFilter = ({
               temp[idx] = !temp[idx];
               setChecked(temp);
 
-              // 체크된 속성을 관리하는 checkedList의 해당하는 필터 종류에 체크한 속성 추가
-              const newCheckedList = [...checkedList];
-              newCheckedList[filterIdx].push(el);
-              setCheckedList(newCheckedList);
-              console.log(checkedList);
+              toggleFilter(el);
             }}
           >
             ✓
