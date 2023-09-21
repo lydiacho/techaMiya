@@ -2,13 +2,38 @@ import { styled } from "styled-components";
 import Card from "./Card";
 import useGetMiya from "../hooks/useGetMiya";
 import { useInView } from "react-intersection-observer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { MetaDataType } from "../types/NftType";
 
 const CardGallery = ({ checkedList }: { checkedList: string[][] }) => {
   const [ref, inView] = useInView();
-  const DATA = useGetMiya(inView);
+  const DATA = useGetMiya();
+  const [data, setData] = useState<MetaDataType[]>(DATA);
 
   const [search, setSearch] = useState("");
+
+  // 데이터 띄우기
+  useEffect(() => {
+    DATA && setData(DATA);
+  }, [DATA]);
+
+  useEffect(() => {
+    setData(
+      //검색창 %search% 검색 (아무것도 입력안하면 전체)
+      DATA.filter((miya) => search === "" || miya.name.includes(search))
+        // 모든 필터를 순회하면서 한 필터에 대해서라도 false면 flag도 false
+        .filter((miya) => {
+          let flag = true;
+          for (let i = 0; i < 13; i++) {
+            flag =
+              flag &&
+              (checkedList[i].length === 0 ||
+                checkedList[i].includes(miya.attributes[i].value));
+          }
+          return flag;
+        })
+    );
+  }, [search, checkedList]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
@@ -21,7 +46,7 @@ const CardGallery = ({ checkedList }: { checkedList: string[][] }) => {
     <St.Wrapper>
       <St.TopBar>
         <St.ItemCount>
-          <span>{DATA.length}</span> Items
+          <span>{data.length}</span> Items
         </St.ItemCount>
         <St.Search
           placeholder="Number"
@@ -32,19 +57,7 @@ const CardGallery = ({ checkedList }: { checkedList: string[][] }) => {
       </St.TopBar>
       <St.Container>
         {checkedList &&
-          DATA.filter((miya) => {
-            // 모든 필터를 순회하면서
-            let flag = true;
-            checkedList.forEach((filter, filterIdx) => {
-              // 하나라도 false면 flag도 false
-              flag =
-                flag &&
-                // 체크를 아무것도 안했을 때도 포함
-                (filter.includes(miya.attributes[filterIdx].value) ||
-                  filter.length === 0);
-            });
-            return flag;
-          }).map((el, idx) => (
+          data.map((el, idx) => (
             <Card key={idx} name={el.name} image={el.image} />
           ))}
         <div ref={ref} />
