@@ -39,6 +39,15 @@ const St = {
     gap: 1.5rem;
 
     margin: 1.5rem 0rem;
+    max-height: 32rem;
+    overflow: scroll;
+
+    /* 스크롤바 숨기기 */
+    -ms-overflow-style: none; /* 인터넷 익스플로러 */
+    scrollbar-width: none; /* 파이어폭스 */
+    &::-webkit-scrollbar {
+      display: none;
+    }
   `,
   TraitItem: styled.li`
     display: flex;
