@@ -63,7 +63,7 @@ const St = {
   `,
   Line: styled.div`
     width: 100%;
-    height: 0.1rem;
+    height: 0.05rem;
     margin: 2rem 0rem;
     background-color: ${({ theme }) => theme.colors.purple1};
   `,

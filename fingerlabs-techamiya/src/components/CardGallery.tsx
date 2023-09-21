@@ -36,7 +36,14 @@ const St = {
     grid-template-columns: repeat(3, 1fr);
     gap: 3rem;
 
+    position: relative;
+
     width: 93rem;
     height: fit-content;
+
+    & > div {
+      position: absolute;
+      bottom: 0;
+    }
   `,
 };
