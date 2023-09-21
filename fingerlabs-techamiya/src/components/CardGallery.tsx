@@ -43,7 +43,7 @@ const CardGallery = ({ checkedList }: { checkedList: string[][] }) => {
       setTimeout(() => {
         containerRef.current &&
           containerRef.current.classList.remove("animation");
-      }, 1500);
+      }, 1000);
     }
   }, [search, checkedList]);
 
@@ -106,8 +106,8 @@ const St = {
     }
 
     &.animation {
-      animation: fadein 2s;
-      -webkit-animation: fadein 2s; /* Safari and Chrome */
+      animation: fadein 1.5s;
+      -webkit-animation: fadein 1.5s; /* Safari and Chrome */
 
       @keyframes fadein {
         from {
