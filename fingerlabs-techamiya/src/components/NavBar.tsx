@@ -3,7 +3,12 @@ import TRAITS from "../data/traits";
 import { useState } from "react";
 import NavBarFilter from "./NavBarFilter";
 
-const NavBar = () => {
+interface NavBarProps {
+  checkedList: string[][];
+  setCheckedList: React.Dispatch<React.SetStateAction<string[][]>>;
+}
+
+const NavBar = ({ checkedList, setCheckedList }: NavBarProps) => {
   const FILTER = Object.keys(TRAITS);
   const [filterOpen, setFilterOpen] = useState<boolean[]>(
     Array.from({ length: 13 }, () => false)
@@ -24,7 +29,13 @@ const NavBar = () => {
             {el}
             <i>{filterOpen[idx] ? "▲" : "▼"}</i>
           </St.FilterItem>
-          {filterOpen[idx] && <NavBarFilter filterIdx={idx} />}
+          {filterOpen[idx] && (
+            <NavBarFilter
+              filterIdx={idx}
+              checkedList={checkedList}
+              setCheckedList={setCheckedList}
+            />
+          )}
           <St.Line />
         </div>
       ))}

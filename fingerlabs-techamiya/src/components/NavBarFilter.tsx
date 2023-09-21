@@ -2,7 +2,17 @@ import { useState } from "react";
 import { styled } from "styled-components";
 import TRAITS from "../data/traits";
 
-const NavBarFilter = ({ filterIdx }: { filterIdx: number }) => {
+interface NavBarFilterProps {
+  filterIdx: number;
+  checkedList: string[][];
+  setCheckedList: React.Dispatch<React.SetStateAction<string[][]>>;
+}
+
+const NavBarFilter = ({
+  filterIdx,
+  checkedList,
+  setCheckedList,
+}: NavBarFilterProps) => {
   // 각 trait을 FILTER[filterIdx]로 접근하기 때문에, key를 제외하고 value들로 이루어진 배열 생성하여 렌더링
   const FILTER = Object.values(TRAITS);
   const [isChecked, setChecked] = useState<boolean[]>(
@@ -19,6 +29,12 @@ const NavBarFilter = ({ filterIdx }: { filterIdx: number }) => {
               const temp = [...isChecked];
               temp[idx] = !temp[idx];
               setChecked(temp);
+
+              // 체크된 속성을 관리하는 checkedList의 해당하는 필터 종류에 체크한 속성 추가
+              const newCheckedList = [...checkedList];
+              newCheckedList[filterIdx].push(el);
+              setCheckedList(newCheckedList);
+              console.log(checkedList);
             }}
           >
             ✓
