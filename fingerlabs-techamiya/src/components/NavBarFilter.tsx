@@ -21,7 +21,12 @@ const NavBarFilter = ({
     Array.from({ length: FILTER[filterIdx].length }, () => false)
   );
 
-  const toggleFilter = (el: string) => {
+  const toggleFilter = (el: string, idx: number) => {
+    // isChecked 배열 update
+    const temp = [...isChecked];
+    temp[idx] = !temp[idx];
+    setChecked(temp);
+
     // 체크된 속성을 관리하는 checkedList의 해당하는 필터 종류에 체크한 속성 추가
     const newCheckedList = [...checkedList];
     if (checkedList[filterIdx].includes(el)) {
@@ -44,13 +49,7 @@ const NavBarFilter = ({
         <St.TraitItem key={idx}>
           <St.CheckBox
             $isItemChecked={isChecked[idx]}
-            onClick={() => {
-              const temp = [...isChecked];
-              temp[idx] = !temp[idx];
-              setChecked(temp);
-
-              toggleFilter(el);
-            }}
+            onClick={() => toggleFilter(el, idx)}
           >
             ✓
           </St.CheckBox>
